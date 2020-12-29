@@ -1,4 +1,6 @@
 # 1.导包
+from datetime import datetime
+
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -42,6 +44,7 @@ class News(db.Model):
     __tablename__ = "news"
     # 定义列对象
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    time = db.Column(db.DateTime, default=datetime.now)
     type = db.Column(db.String(256))
     title = db.Column(db.String(256), unique=True)
     content = db.Column(db.String(256))
@@ -82,7 +85,6 @@ def addNews():
         title = request.form['title']
         content = request.form['content']
         info = News(type=type_, title=title, content=content)
-        print(info)
         db.session.add(info)
         db.session.commit()
         res = {
