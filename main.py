@@ -2,13 +2,11 @@
 import json
 from datetime import datetime
 
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import pymysql
-from bs4 import BeautifulSoup
 import requests
-from sqlalchemy import true
 
 pymysql.install_as_MySQLdb()
 # 2.创建flask应用对象
